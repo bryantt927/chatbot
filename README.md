@@ -1,53 +1,110 @@
-# Audio Message Transcription and Response Generation Project
-
 ## Introduction
 
-This project offers a comprehensive solution for transcribing audio messages and generating responses, leveraging OpenAI's Whisper and GPT-4 models. Integrated into a Flask backend with a React frontend, the application allows users to record audio messages via a web interface, transcribes these messages into text, and employs the GPT-4 model to craft responses to the transcribed text. This README contains all you need to know to get started, including setup instructions, usage tips, and how to contribute.
+The project began by using code from https://github.com/toygunozyurekk/Voice-Chatbot. Thank you toygun for the code and his instructions on Medium https://python.plainenglish.io/voice-chatbot-openai-whisper-2ee5cd732239
+
+Ability to track student transcripts, updated audio handling, frontend for instructors to create their own chatbots based on custom prompts, improved UI and other improvements by https://github.com/Hill134Z and https://github.com/annepham1512
+
+This project offers a language teachers the ability to host their own AI chatbot using an OpenAI key. Integrated into a Flask backend with a React frontend, the application allows students to interact via audio or text with an AI bot created by instructor prompts. "Pretend you are a native Spanish speaking helping an English speaker ..." etc. Example prompts are included in AIPrompt.json. Student conversations are transcribed and visible to the instructors.
+
+A more detailed description of the chatbot along with screenshots is available on the Dickinson College Academic Technology blog, though the bot itself is only available on our campus. https://blogs.dickinson.edu/academic-technology/2025/07/28/update-to-foreign-language-chatbot/
 
 ## Installation
 
 ### Prerequisites
 
+- Linux with Apache
 - Python 3.8 or newer
 - Node.js and npm
 - Flask
 - React
 - Axios
-- Whisper model from OpenAI (for the backend)
 - dotenv (for environment variable management)
 - Flask-CORS (for handling cross-origin requests)
+- httpx
+- certify
+
+### Dev environment
 
 ### Backend Setup
 
 1. Clone the repository to your local machine.
-2. Navigate to the project directory and install the Python dependencies:
+2. You will need a DNS entry on your webserver for the flask backend. The default port for flask is 5000.
+3. Navigate to the project directory and install the Python dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Create a `.env` file in the root of the backend project directory and add your OpenAI API key:
+4. Rename the ExampleEnvFile.env file in the root project directory to just .env file and enter the variables. For example:
 
     ```env
     OPENAI_API_KEY=your_api_key_here
     ```
+5. uncomment the the final line in app.py for app.run to allow it to be run directly via the command line as with the flask dev server.
 
 4. Start the Flask server:
 
     ```bash
-    flask run
+    flask run --debug
     ```
 
 ### Frontend Setup
 
-1. Navigate to the frontend project directory (assuming it's separate from the backend).
-2. Install the required npm packages:
+1. Navigate to the /my-app frontend project directory
+2. You will need a DNS entry on your webserver for the react frontend. The default port for react is 3000.
+3. Install the required npm packages:
 
     ```bash
     npm install
     ```
 
-3. Start the React development server:
+4. Rename the ExampleReactEnvFile.env file  to just .env file and enter the variables.
+5. In my-app/package.json update the variable in the "start" area with your host and port
+6. Update the my-app/src/setupProxy.js file by changing the target value to the url of your flask server. This is creating a proxy server so that the paths /api/some_route and are handled and sent to the /some_route on flask.
+7. Start the React development server:
+
+    ```bash
+    npm start
+    ```
+
+### Prod Environment
+### Backend Setup
+
+1. Clone the repository to your local machine.
+2. You will need a DNS entry on your webserver for the flask backend. The default port for flask is 5000.
+3. Navigate to the project directory and install the Python dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Rename the ExampleEnvFile.env file in the root project directory to just .env file and enter the variables. For example:
+
+    ```env
+    OPENAI_API_KEY=your_api_key_here
+    ```
+5. uncomment the the final line in app.py for app.run to allow it to be run directly via the command line as with the flask dev server.
+
+4. Start the Flask server:
+
+    ```bash
+    flask run --debug
+    ```
+
+### Frontend Setup
+
+1. Navigate to the /my-app frontend project directory
+2. You will need a DNS entry on your webserver for the react frontend. The default port for react is 3000.
+3. Install the required npm packages:
+
+    ```bash
+    npm install
+    ```
+
+4. Rename the ExampleReactEnvFile.env file  to just .env file and enter the variables.
+5. In my-app/package.json update the variable in the "start" area with your host and port
+6. Update the my-app/src/setupProxy.js file by changing the target value to the url of your flask server. This is creating a proxy server so that the paths /api/some_route and are handled and sent to the /some_route on flask.
+7. Start the React development server:
 
     ```bash
     npm start
@@ -55,7 +112,9 @@ This project offers a comprehensive solution for transcribing audio messages and
 
 ## Usage
 
-Once both the frontend and backend servers are running, navigate to the URL provided by the React development server (typically `http://localhost:3000`) in your web browser.
+Once both the frontend and backend servers are running, students navigate to the URL provided by the React server in your web browser.
 
-- To send a text message: Type your message in the text box and click the "Send" button.
-- To send an audio message: Click the "Start Recording" button to start recording your message and the "Stop Recording" button once you are done. The application will automatically transcribe your audio message and display the transcription along with a generated response.
+- To send a text message: Type your message in the text box and hit enter.
+- To send an audio message: Click the microphone icon to start. Most browsers will ask you want to allow the microphone say yes. Stop the recording the circle button next to the mic. Students my preview their recording. Then either redo the recording or click the Send Audio button.
+
+Instructors will need a password, specified in the .env file, to access the dashboard at /professor=view.  Top right corner menu to add/edit prompts and view transcripts of their students.
