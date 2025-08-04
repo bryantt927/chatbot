@@ -45,7 +45,7 @@ A more detailed description of the chatbot along with screenshots is available o
 4. Start the Flask server:
 
     ```bash
-    flask run --debug
+    flask run --host 0.0.0.0 --debug
     ```
 
 ### Frontend Setup
@@ -112,7 +112,6 @@ A more detailed description of the chatbot along with screenshots is available o
 6. Create the node_modules and build directories for React:
 
     ```bash
-    npm start
     npm build
     ```
 
