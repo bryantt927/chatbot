@@ -190,8 +190,13 @@ build
 .env
 /my-app/.env
 /.env
+# Ignore all files within these directories, but keep the directories themselves.
 /conversation_history/*
+!/conversation_history/.gitkeep
 /audio_files/*
+!/audio_files/.gitkeep
+
+
 /AIPrompt.txt
 README-Todd.md
 
