@@ -62,7 +62,7 @@ A more detailed description of the chatbot along with screenshots is available o
 5. In my-app/package.json update the variable in the "start" area with your host and port
 6. Update the my-app/src/setupProxy.js file by changing the target value to the url of your flask server. This is creating a proxy server so that the paths /api/some_route and are handled and sent to the /some_route on flask.
 7. Start the React development server:
-
+    
     ```bash
     npm start
     ```
@@ -91,6 +91,8 @@ A more detailed description of the chatbot along with screenshots is available o
 
     ```bash
     python -m venv venv
+    ```
+        ```bash
     source venv/bin/activate
     ```
 9. Restart apache  
