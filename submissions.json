@@ -1,0 +1,494 @@
+{
+  "bryantt@dickinson.edu": {
+    "students": {
+      "todd927@gmail.com": [
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 09:25:51",
+          "user_token": "27f52f8f6ab2e8b25daa3035db19c52e",
+          "conversation": [
+            {
+              "user": "Hallo",
+              "assistant": "Hallo! Wie geht es dir heute?"
+            },
+            {
+              "user": "Es geht mir gut Bremen ist fantastisch..",
+              "assistant": "\"Es geht mir gut. Bremen ist fantastisch.\""
+            },
+            {
+              "user": "Ich habe Joghurt entdeckt, mit fett!",
+              "assistant": "\"Ich habe Joghurt mit Fett entdeckt!\""
+            },
+            {
+              "user": "Naturlich!",
+              "assistant": "\"Nat\u00fcrlich!\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Modal Verbs",
+          "timestamp": "23/07/2025 09:54:24",
+          "user_token": "cf3f59ca967d849e945c5177f838b44c",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht's dir?"
+            },
+            {
+              "user": "Sehr gut",
+              "assistant": "Sehr gut! Was m\u00f6chtest du heute machen?"
+            },
+            {
+              "user": "Ich m\u00f6chte Deutsch lernen.",
+              "assistant": "\"Ich m\u00f6chte Deutsch lernen.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "23/07/2025 10:14:13",
+          "user_token": "a8f420031efc99e8c9980b11db22e6d5",
+          "conversation": [
+            {
+              "user": "Ich habe viel gegessen.",
+              "assistant": "Sehr gut! Was hast du gestern zum Fr\u00fchst\u00fcck gegessen?"
+            },
+            {
+              "user": "Zum Freitag, wenn ich nach Hause komme, w\u00fcnsche ich dir einen sch\u00f6nen Tag.",
+              "assistant": "\"Zum Freitag, wenn ich nach Hause gekommen bin, w\u00fcnsche ich dir einen sch\u00f6nen Tag.\""
+            },
+            {
+              "user": "Zum Fr\u00fchst\u00fcck ich habe M\u00fcsli gegessen.",
+              "assistant": "\"Zum Fr\u00fchst\u00fcck habe ich M\u00fcsli gegessen.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "23/07/2025 14:34:16",
+          "user_token": "45ee62ba09bfcc732edf0bdd1a583188",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht's dir?"
+            },
+            {
+              "user": "sehr gut",
+              "assistant": "Sehr gut! Hast du heute etwas Interessantes gemacht?"
+            },
+            {
+              "user": "Ja, ich habe ein Buch gelesen.",
+              "assistant": "\"Ja, ich habe ein Buch gelesen.\""
+            },
+            {
+              "user": "Es war eine Nacht in Lisbon.",
+              "assistant": "\"Es war eine Nacht in Lissabon.\""
+            },
+            {
+              "user": "Das war der Titel meines Buches.",
+              "assistant": "\"Das war der Titel meines Buches.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German 101 likes and dislikes, m\u00f6gen und gern",
+          "timestamp": "25/07/2025 09:32:14",
+          "user_token": "494849df672300a7250a45d8428c4c23",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht es dir?"
+            },
+            {
+              "user": "Es geht mir sehr gut.",
+              "assistant": "Sehr gut! Was machst du gern?"
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Modal Verbs",
+          "timestamp": "25/07/2025 10:04:21",
+          "user_token": "e90666f7b5956f333fa2e24b8f66a35c",
+          "conversation": [
+            {
+              "user": "Ich m\u00f6chte ausgehen, aber ich muss lernen.",
+              "assistant": "\"Ich m\u00f6chte ausgehen, aber ich muss lernen.\""
+            },
+            {
+              "user": "Ich m\u00f6chte ausgehen.",
+              "assistant": "\"Ich m\u00f6chte ausgehen.\""
+            },
+            {
+              "user": "Ich m\u00f6chte in einer Bar Bier trinken.",
+              "assistant": "\"Ich m\u00f6chte in einer Bar Bier trinken.\""
+            },
+            {
+              "user": "Am Abend, ich m\u00f6chte Deutsch lernen.",
+              "assistant": "\"Am Abend m\u00f6chte ich Deutsch lernen.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Modal Verbs",
+          "timestamp": "25/07/2025 10:28:56",
+          "user_token": "7f7b3c4f25ac34c7f339c08c007ca7c1",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht es dir heute?"
+            },
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht es dir heute?"
+            },
+            {
+              "user": "Es geht mir fantastisch!",
+              "assistant": "Sehr gut! Was m\u00f6chtest du heute machen?"
+            },
+            {
+              "user": "Ich m\u00f6chte ein paar Freunde besuchen.",
+              "assistant": "\"Ich m\u00f6chte ein paar Freunde besuchen.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German 101 likes and dislikes, m\u00f6gen und gern",
+          "timestamp": "28/07/2025 14:26:18",
+          "user_token": "e906ae5e6ed01856346ec77086a8de7c",
+          "conversation": [
+            {
+              "user": "hallo 2",
+              "assistant": "Hallo! Wie geht's dir?"
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German 101 likes and dislikes, m\u00f6gen und gern",
+          "timestamp": "31/07/2025 14:52:34",
+          "user_token": "02144d29c7ab6805ff374c7d90a6593c",
+          "conversation": [
+            {
+              "user": "hallo1",
+              "assistant": "Hallo! Wie geht es dir?"
+            },
+            {
+              "user": "sehr gut",
+              "assistant": "Sehr gut! Was machst du gern?"
+            },
+            {
+              "user": "Ich lese sehr gern.",
+              "assistant": "\"Ich lese sehr gern.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "French Chatbot - Pass\u00e9 Compos\u00e9",
+          "timestamp": "31/07/2025 15:03:27",
+          "user_token": "640340793faaec258f896ad69468c3a2",
+          "conversation": [
+            {
+              "user": "bonjour",
+              "assistant": "Bonjour ! Comment \u00e7a va aujourd'hui ?"
+            },
+            {
+              "user": "bonjour",
+              "assistant": "Bonjour ! Comment \u00e7a va aujourd'hui ?"
+            },
+            {
+              "user": "Bonjour.",
+              "assistant": "Bonjour ! Comment \u00e7a va aujourd'hui ?"
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "test 4 title",
+          "timestamp": "31/07/2025 15:07:51",
+          "user_token": "a2f5081749a5c7c198002f2d8713ea35",
+          "conversation": [
+            {
+              "user": "hi",
+              "assistant": "Hello! How can I assist you today?"
+            },
+            {
+              "user": "Tell me a joke.",
+              "assistant": "Why did the scarecrow win an award? Because he was outstanding in his field!"
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "test5",
+          "timestamp": "01/08/2025 10:29:54",
+          "user_token": "aaa16fa012b58e9e971543625c1e1edd",
+          "conversation": [
+            {
+              "user": "test",
+              "assistant": "Test received! How can I assist you today?"
+            },
+            {
+              "user": "Just testing.",
+              "assistant": "Test acknowledged! If you have any questions or need assistance, feel free to ask."
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German 101 likes and dislikes, m\u00f6gen und gern",
+          "timestamp": "01/08/2025 10:30:52",
+          "user_token": "44d6d5d034e84117b40448aab5f93eb2",
+          "conversation": [
+            {
+              "user": "guten tag",
+              "assistant": "Guten Tag! Wie geht's dir heute?"
+            },
+            {
+              "user": "Sehr gut, danke.",
+              "assistant": "Sehr gut! Was machst du gern?"
+            },
+            {
+              "user": "Ich lese gern",
+              "assistant": "Sehr gut! Was liest du gern?"
+            },
+            {
+              "user": "Ich lese gern Harry Potter B\u00fccher.",
+              "assistant": "\"Ich lese gern Harry-Potter-B\u00fccher.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "Spanish Chatbot - Pret\u00e9rito",
+          "timestamp": "01/08/2025 12:06:11",
+          "user_token": "987db4edb5ec7371d189f82b401d2733",
+          "conversation": [
+            {
+              "user": "hola",
+              "assistant": "\u00a1Hola! \u00bfC\u00f3mo est\u00e1s?"
+            },
+            {
+              "user": "bien",
+              "assistant": "\u00a1Muy bien! \u00bfQu\u00e9 hiciste ayer?"
+            }
+          ]
+        }
+      ],
+      "todd_w_bryant@hotmail.com": [
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 09:58:38",
+          "user_token": "5e52a2a89c952c643e4474583fe09748",
+          "conversation": [
+            {
+              "user": "Gut",
+              "assistant": "Sehr gut! Wie war dein Tag gestern?"
+            },
+            {
+              "user": "Der Tag war fantastisch.",
+              "assistant": "Sehr gut! Was hast du gestern gemacht?"
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 10:06:11",
+          "user_token": "c7aba3ca27dbf0c3eb657dc0a3fa68d5",
+          "conversation": [
+            {
+              "user": "Rede 3",
+              "assistant": "Es tut mir leid, aber ich verstehe nicht, was du mit \"Rede 3\" meinst. Kannst du das bitte genauer erkl\u00e4ren?"
+            },
+            {
+              "user": "Rede 3",
+              "assistant": "Ich verstehe immer noch nicht, was du mit \"Rede 3\" meinst. Kannst du mir bitte mehr Informationen geben?"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "bryantt@gmail.com": {
+    "students": {
+      "todd_w_bryant@hotmail.com": [
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 09:32:38",
+          "user_token": "37c7899331c616caece60bc12926730c",
+          "conversation": [
+            {
+              "user": "Ich habe viel Leute kennengelernt",
+              "assistant": "\"Ich habe viele Leute kennengelernt.\""
+            },
+            {
+              "user": "Ja, ich habe ein griechisches Restaurant besucht.  Der Essen war lecker.",
+              "assistant": "\"Das Essen war lecker.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 09:50:56",
+          "user_token": "86ce7b6a75a833c4fab3710bf4f84b57",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht's dir?"
+            },
+            {
+              "user": "Sehr gut, danke",
+              "assistant": "Sehr gut! Was hast du gestern gemacht?"
+            },
+            {
+              "user": "Ich habe geschlafen.",
+              "assistant": "Sehr gut! Wo hast du geschlafen?"
+            },
+            {
+              "user": "im Bett.",
+              "assistant": "\"Im Bett.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "22/07/2025 11:03:05",
+          "user_token": "285c23b0894ec88a820e67a2b884e200",
+          "conversation": [
+            {
+              "user": "Also reden wir viel. Ich habe nicht viel in Bremen gemacht.",
+              "assistant": "\"Ich habe nicht viel in Bremen gemacht.\""
+            },
+            {
+              "user": "Ich habe eine Kirsche gesehen.",
+              "assistant": "Sehr gut!"
+            },
+            {
+              "user": "Nein, ich meine eine Kirche, wo man betet.",
+              "assistant": "\"Nein, ich meine eine Kirche, wo man betet.\""
+            }
+          ]
+        },
+        {
+          "name": "Todd",
+          "email": "todd_w_bryant@hotmail.com",
+          "chatbot_name": "German Modal Verbs",
+          "timestamp": "22/07/2025 11:12:27",
+          "user_token": "a78f4994e702669ace235900a28ce56a",
+          "conversation": [
+            {
+              "user": "Ich muss Deutsch lernen.",
+              "assistant": "\"Ich muss Deutsch lernen.\""
+            },
+            {
+              "user": "Ich kann auch meine Hausarbeit von meiner Englischkurs schreiben.",
+              "assistant": "\"Ich kann auch meine Hausarbeit in meinem Englischkurs schreiben.\""
+            },
+            {
+              "user": "Im Freitag",
+              "assistant": "\"Am Freitag.\""
+            },
+            {
+              "user": "Ich m\u00f6chte ausgehen.",
+              "assistant": "\"Ich m\u00f6chte ausgehen.\""
+            }
+          ]
+        }
+      ],
+      "todd927@gmail.com": [
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German Example Chatbot Past Perfect Tense",
+          "timestamp": "25/07/2025 09:48:50",
+          "user_token": "76ecf6ac7e84d894a7a9266cc362a514",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht es dir?"
+            },
+            {
+              "user": "Es geht mir sehr gut, danke.",
+              "assistant": "Sehr gut! Was hast du heute gemacht?"
+            },
+            {
+              "user": "Ich habe ein paar Freunde besucht.",
+              "assistant": "\"Ich habe ein paar Freunde besucht.\""
+            },
+            {
+              "user": "Hier noch ein paar, aber ich vergesse die Namen.",
+              "assistant": "\"Hier sind noch ein paar, aber ich habe die Namen vergessen.\""
+            },
+            {
+              "user": "In einem Bar. Aber ich vergesse den Namen.",
+              "assistant": "\"Ich war in einer Bar. Aber ich habe den Namen vergessen.\""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mcgaughs@dickinson.edu": {
+    "students": {
+      "todd927@gmail.com": [
+        {
+          "name": "Todd",
+          "email": "todd927@gmail.com",
+          "chatbot_name": "German 101 likes and dislikes, m\u00f6gen und gern",
+          "timestamp": "31/07/2025 16:24:04",
+          "user_token": "e9d99fd9e1d390fdf0e082c6f76cfa94",
+          "conversation": [
+            {
+              "user": "hallo",
+              "assistant": "Hallo! Wie geht es dir?"
+            },
+            {
+              "user": "Es geht mir fantastisch, danke.",
+              "assistant": "Sehr gut! Was machst du gern?"
+            },
+            {
+              "user": "Ich gern essen Pizza.",
+              "assistant": "\"Ich esse gern Pizza.\""
+            },
+            {
+              "user": "Ich essen gern Pizza.",
+              "assistant": "\"Ich esse gern Pizza.\""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

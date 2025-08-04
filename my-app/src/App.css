@@ -1,0 +1,194 @@
+/* App.css - Clean, modern design with red primary color */
+
+.App {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/*Todd*/
+button.MuiButtonBase-root {
+  right: -2px;
+}
+
+.App-header {
+  background-color: #C8102E; /* Red background */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #ff7961;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.App-link:hover {
+  color: #ffcdd2;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Container for content */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Chat message box styling */
+.chat-box {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.chat-box.user {
+  background-color: #C8102E;
+  color: white;
+  align-self: flex-end;
+  border-top-right-radius: 4px;
+}
+
+.chat-box.bot {
+  background-color: #f5f5f5;
+  color: #333;
+  align-self: flex-start;
+  border-top-left-radius: 4px;
+}
+
+/* Scrollable chat container */
+.chat-container {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input field customization */
+.message-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.message-input:focus {
+  border-color: #b71c1c;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+}
+
+/* Send button style */
+.send-button {
+  background-color: #C8102E;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #b71c1c;
+}
+
+/* Button base style */
+.button {
+  background-color: #C8102E;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #b71c1c;
+}
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+  .App-header {
+    background-color: #b71c1c;
+  }
+
+  .chat-box.bot {
+    background-color: #1e1e1e;
+    color: #eee;
+  }
+
+  .chat-box.user {
+    background-color: #ef5350;
+  }
+
+  .message-input {
+    background-color: #2c2c2c;
+    color: white;
+    border-color: #444;
+  }
+
+  .send-button {
+    background-color: #ef5350;
+  }
+
+  .send-button:hover {
+    background-color: #C8102E;
+  }
+  /* Bubbly Scrollbar Styles */
+  .chat-window-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .chat-window-wrapper::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .chat-window-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 82, 82, 0.4); /* light red */
+    border-radius: 16px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .chat-window-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 82, 82, 0.7);
+  }
+}
