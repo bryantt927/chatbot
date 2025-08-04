@@ -1,0 +1,58 @@
+# Need to add a virtual host for React frontend and Flask backend. You basically telling Apache to handle requests from /api/any_route and pass them 
+# on to flask which is listening for /any_route
+<VirtualHost *:443>
+    ServerName chatbot.yourschool.edu
+    ServerAdmin youradmin@yourschool.edu
+
+    SSLEngine on
+    SSLCertificateFile /path/to/your/Cert.crt
+    SSLCertificateChainFile /path/to/your/DigiCert.crt
+    # SSLCertificateKeyFile /path/to/your/Key.key
+
+    # --- React Frontend Configuration ---
+    DocumentRoot /var/www/chatbot/my-app/build
+    <Directory /var/www/chatbot/my-app/build>
+        # Options Indexes FollowSymLinks # 'Indexes' is usually not needed for a React build. 'FollowSymLinks' is okay.
+        # AllowOverride All # Generally change to 'None' or omit for production static assets for security/performance
+        Require all granted
+        FallbackResource /index.html
+    </Directory>
+
+    # --- Flask Backend (WSGI) Configuration ---
+    # This defines a dedicated daemon process for your Flask app. **Excellent addition!**
+    WSGIDaemonProcess chatbot python-home=/var/www/chatbot/venv python-path=/var/www/chatbot user=apache group=apache threads=5
+
+    # This is the **CRITICAL CORRECTION** for the API routing.
+    # It routes only requests starting with /api/ to your Flask app.
+    WSGIScriptAlias /api /var/www/chatbot/wsgi.py
+
+    # This links the WSGI application to the named daemon process group.
+    # It also grants Apache permission to access your WSGI application directory.
+    <Directory /var/www/chatbot>
+        WSGIProcessGroup chatbot
+        WSGIApplicationGroup %{GLOBAL}
+        Require all granted
+    </Directory>
+
+    ErrorLog logs/chatbot-error_log
+    CustomLog logs/chatbot-access_log common
+</VirtualHost>
+
+# The Chatbot Flask Backend
+<VirtualHost *:3000>
+ServerName flask.yourschool.edu
+ServerAdmin youradmin@school.edu
+DocumentRoot /var/www/chatbot
+# --- Flask Backend (WSGI) Configuration ---
+# Define a daemon process for your Flask app
+WSGIDaemonProcess flask_chatbot python-home=/var/www/chatbot/venv python-path=/var/www/chatbot user=chatbot group=chatbot threads=5
+# Mount the ENTIRE Flask app at the /api endpoint
+# All requests starting with /api/ will be sent to Flask 
+WSGIScriptAlias /api /var/www/chatbot/wsgi.py
+
+ErrorLog logs/flask-error_log
+CustomLog logs/flask-access_log common
+<Directory "/var/www/chatbot/">
+Require all granted
+</Directory>
+</VirtualHost>
