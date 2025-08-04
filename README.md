@@ -70,26 +70,30 @@ A more detailed description of the chatbot along with screenshots is available o
 ### Prod Environment
 ### Backend Setup
 
-1. Clone the repository to your local machine.
-2. You will need a DNS entry on your webserver for the flask backend. The default port for flask is 5000.
-3. Navigate to the project directory and install the Python dependencies:
+1. Install mod_wsgi for apache
+2. Add DNS entry for flask the default port is 5000.
+3. Need to add a virtual host for flask and react. Check the ExampleHTTPConfFile.txt in this repo for an example
+4. Clone the repository to your server.
+5. Navigate to the project directory and install the Python dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. Rename the ExampleEnvFile.env file in the root project directory to just .env file and enter the variables. For example:
+6. Rename the ExampleEnvFile.env file in the root project directory to just .env file and enter the variables. For example:
 
     ```env
     OPENAI_API_KEY=your_api_key_here
     ```
-5. uncomment the the final line in app.py for app.run to allow it to be run directly via the command line as with the flask dev server.
+7. Comment out the the final line in app.py for app.run if it isn't already, since we are not running it command line as with the flask dev server.
 
-4. Start the Flask server:
+8. Create and activate the virtual environment for python, from the root:
 
     ```bash
-    flask run --debug
+    python -m venv venv
+    source venv/bin/activate
     ```
+9. Restart apache  
 
 ### Frontend Setup
 
@@ -103,11 +107,11 @@ A more detailed description of the chatbot along with screenshots is available o
 
 4. Rename the ExampleReactEnvFile.env file  to just .env file and enter the variables.
 5. In my-app/package.json update the variable in the "start" area with your host and port
-6. Update the my-app/src/setupProxy.js file by changing the target value to the url of your flask server. This is creating a proxy server so that the paths /api/some_route and are handled and sent to the /some_route on flask.
-7. Start the React development server:
+6. Create the node_modules and build directories for React:
 
     ```bash
     npm start
+    npm build
     ```
 
 ## Usage
