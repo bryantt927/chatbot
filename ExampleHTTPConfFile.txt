@@ -19,11 +19,10 @@
     </Directory>
 
     # --- Flask Backend (WSGI) Configuration ---
-    # This defines a dedicated daemon process for your Flask app. **Excellent addition!**
+    # This defines a dedicated daemon process for your Flask app.
     WSGIDaemonProcess chatbot python-home=/var/www/chatbot/venv python-path=/var/www/chatbot user=apache group=apache threads=5
 
-    # This is the **CRITICAL CORRECTION** for the API routing.
-    # It routes only requests starting with /api/ to your Flask app.
+    # Routes requests starting with /api/ to your Flask app.
     WSGIScriptAlias /api /var/www/chatbot/wsgi.py
 
     # This links the WSGI application to the named daemon process group.
