@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=8033 HOST=react4.dickinson.edu HTTPS=true react-scripts start",
+    "start": "PORT=8033 HOST=react.yourschool.edu HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,3 +44,4 @@
     ]
   }
 }
+
