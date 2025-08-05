@@ -73,7 +73,7 @@ A more detailed description of the chatbot along with screenshots is available o
 1. Install mod_wsgi for apache
 2. Add DNS entry for flask the default port is 5000.
 3. Need to add a virtual host for flask and react. Check the ExampleHTTPConfFile.txt in this repo for an example
-4. Clone the repository to your server.
+4. Clone the repository to your server. Make sure apache has read/write permissions to all txt and json files.
 5. Navigate to the project directory and install the Python dependencies:
 
     ```bash
