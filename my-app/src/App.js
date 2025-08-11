@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState, useCallback, useImperativeHandle, useMemo} from "react";
 import './App.css';
 import {
     Button,
@@ -43,6 +42,7 @@ import Menu from '@mui/material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProfessorView from "./pages/ProfessorView";
+import React, { useEffect, useRef, useState, useCallback, useImperativeHandle, useMemo} from "react";
 
 // =============================================
 // GLOBAL CONSTANTS / MOCK DATA
@@ -618,71 +618,71 @@ const AgentMessage = styled('div')(({ theme }) => ({
 // =============================================
 const ChatMessages = React.memo(React.forwardRef(({ messages, playAudio, generateTTSAudio, setMessages }, ref) => {
     const theme = useTheme();
-    const bottomRef = useRef(null);
+    const scrollContainerRef = useRef(null);
 
+    // This effect handles the auto-scrolling correctly.
     useEffect(() => {
-        // This prevents scrolling when `messages` is just `mockMessages` on initial load.
-        if (messages.length > 1 || (messages.length === 1 && messages[0] !== mockMessages[0])) {
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (scrollContainerRef.current) {
+            const scrollElement = scrollContainerRef.current;
+            scrollElement.scrollTop = scrollElement.scrollHeight;
         }
-    }, [messages]); 
-
-    // Expose the internal scrollToBottom function via the ref
-    useImperativeHandle(ref, () => ({
-        scrollToBottom: () => {
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }
-    }));
+    }, [messages]);
 
 
+    // Define the missing handlePlayAudio function.
+    // This function will play existing audio or generate new TTS audio if it doesn't exist.
     const handlePlayAudio = async (message, index) => {
-        if (!message.audioUrl) {
+        if (message.audioUrl) {
+            // If the message object already has an audioUrl, just play it.
+            playAudio(message.audioUrl);
+        } else {
+            // Otherwise, generate the Text-to-Speech audio.
             const audioUrl = await generateTTSAudio(message.text);
             if (audioUrl) {
+                // Update the state to include the new audioUrl for this message.
+                // This prevents re-generating it every time.
                 setMessages(prevMessages => {
-                    const updatedMessages = [...prevMessages];
-                    updatedMessages[index] = {
-                        ...updatedMessages[index],
-                        audioUrl: audioUrl
-                    };
-                    return updatedMessages;
+                    const newMessages = [...prevMessages];
+                    newMessages[index] = { ...newMessages[index], audioUrl: audioUrl };
+                    return newMessages;
                 });
+                // Play the newly created audio.
                 playAudio(audioUrl);
             }
-        } else {
-            playAudio(message.audioUrl);
         }
     };
 
     return (
         <Container>
-            <Box sx={{
-                width: '100%',
-                mt: 4,
-                maxHeight: 300,
-                minHeight: 300,
-                overflowY: 'auto',
-                scrollbarWidth: 'thin',
-                scrollbarColor: (theme) => `${theme.palette.primary.main} transparent`,
-                '&::-webkit-scrollbar': {
-                    width: '8px',
-                    borderRadius: '16px',
-                    backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                },
-                '&::-webkit-scrollbar-thumb': {
-                    backgroundColor: (theme) => theme.palette.primary.main,
-                    borderRadius: '16px',
-                    border: '2px solid transparent',
-                    backgroundClip: 'padding-box',
-                    transition: 'background-color 0.3s ease',
-                },
-                '&::-webkit-scrollbar-thumb:hover': {
-                    backgroundColor: (theme) => theme.palette.primary.dark,
-                },
+            <Box
+                ref={scrollContainerRef}
+                sx={{
+                    width: '100%',
+                    mt: 4,
+                    maxHeight: 300,
+                    minHeight: 300,
+                    overflowY: 'auto',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: (theme) => `${theme.palette.primary.main} transparent`,
+                    '&::-webkit-scrollbar': {
+                        width: '8px',
+                        borderRadius: '16px',
+                        backgroundColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: (theme) => theme.palette.primary.main,
+                        borderRadius: '16px',
+                        border: '2px solid transparent',
+                        backgroundClip: 'padding-box',
+                        transition: 'background-color 0.3s ease',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                        backgroundColor: (theme) => theme.palette.primary.dark,
+                    },
                 }}>
-                <Paper elevation={0} sx={{ 
-                    padding: 2, 
+                <Paper elevation={0} sx={{
+                    padding: 2,
                     backgroundColor: 'transparent',
                     borderRadius: 2,
                     boxShadow: 'none'
@@ -729,6 +729,7 @@ const ChatMessages = React.memo(React.forwardRef(({ messages, playAudio, generat
                                                             opacity: 0.8,
                                                             '&:hover': { opacity: 1 }
                                                         }}
+                                                        // This onClick call is now valid because we defined the function above.
                                                         onClick={() => handlePlayAudio(message, index)}
                                                     >
                                                         <VolumeUpIcon fontSize="small" />
@@ -740,20 +741,12 @@ const ChatMessages = React.memo(React.forwardRef(({ messages, playAudio, generat
                                 />
                             </ListItem>
                         ))}
-                        <div ref={bottomRef}/>
                     </List>
                 </Paper>
             </Box>
         </Container>
     );
-}))
-
-ChatMessages.propTypes = {
-    playAudio: PropTypes.func.isRequired,
-    messages: PropTypes.array.isRequired,
-    generateTTSAudio: PropTypes.func.isRequired,
-    setMessages: PropTypes.func.isRequired,
-};
+}));
 
 // =============================================
 // PROMPT EDITOR COMPONENT (FOR PROFESSORS) - V2
@@ -763,7 +756,6 @@ ChatMessages.propTypes = {
 
 
 const PromptEditor = () => {
-    // --- State Variables (all useState hooks must be here) ---
     const [allPrompts, setAllPrompts] = useState({});
     const [availableLanguages, setAvailableLanguages] = useState([]);
     const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -779,13 +771,9 @@ const PromptEditor = () => {
     const [statusMessage, setStatusMessage] = useState('');
     const [isEditMode, setIsEditMode] = useState(false);
 
-    // NEW DELETE CODE ADDITION: State for Delete Dialog
-    // These two lines MUST be here at the top with your other useState calls
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [promptToDelete, setPromptToDelete] = useState(null); // This holds the name of the prompt to be deleted
 
-
-    // --- Helper Functions (like getUniqueLanguages) ---
     const getUniqueLanguages = (configs) => {
         const languages = Object.values(configs).map(config => config.language);
         return [...new Set(languages)].sort();
@@ -793,8 +781,8 @@ const PromptEditor = () => {
 
 
     // =============================================
-    // FETCH PROMPTS FUNCTION (Refactored: Outside useEffect, using useCallback)
-    // This is now a standalone function that can be called by useEffect or confirmDelete
+    // FETCH PROMPTS FUNCTION 
+    // This is a standalone function that can be called by useEffect or confirmDelete
     // =============================================
     const fetchPrompts = useCallback(async () => {
         try {
@@ -825,19 +813,15 @@ const PromptEditor = () => {
         );
     };
 
-
-    // =============================================
-    // NEW DELETE CODE ADDITION: DELETE PROMPT FUNCTIONS
-    // These functions MUST be here, after state and fetchPrompts
-    // =============================================
-    const handleDeletePrompt = (promptName) => { // This name matches the one in your JSX now
+    //Delete Prompt Handlers
+    const handleDeletePrompt = (promptName) => { 
         setPromptToDelete(promptName);
         setOpenDeleteDialog(true);
     };
 
     const confirmDelete = async () => {
         setOpenDeleteDialog(false); // Close the dialog immediately
-        if (!promptToDelete) return; // promptToDelete is now defined
+        if (!promptToDelete) return; 
         console.log("Frontend attempting to delete prompt:", promptToDelete);
         try {
             const response = await axios.post('/api/delete_prompt', {
@@ -1035,7 +1019,7 @@ const PromptEditor = () => {
                             {isEditMode ? 'Update Prompt' : 'Save New Prompt'}
                         </Button>
 
-                        {/* NEW DELETE CODE ADDITION: Delete Button */}
+                        
                         {/* Only show delete button if a prompt is currently selected for editing */}
                         {selectedPromptTitle && ( // Changed from selectedPrompt to selectedPromptTitle
                             <Button
@@ -1063,7 +1047,7 @@ const PromptEditor = () => {
                 )}
             </Paper>
 
-            {/* NEW DELETE CODE ADDITION: Delete Confirmation Dialog */}
+            {/* Delete Confirmation Dialog */}
             {/* This Dialog must be within the PromptEditor's return statement */}
             <Dialog
                 open={openDeleteDialog}
@@ -1107,9 +1091,8 @@ const PromptEditor = () => {
     );
 };
 
-// =============================================
-// MAIN APP COMPONENT
-// =============================================
+
+
 function App(props) {
     const LANGUAGE_MAP = useMemo(() => ({
         English: 'en',
@@ -1150,7 +1133,6 @@ function App(props) {
 
 
     const location = useLocation(); 
-    const chatMessagesRef = useRef(null);
 
     const [showEmailModal, setShowEmailModal] = useState(false);
     const [emailStatus, setEmailStatus] = useState('');
@@ -1366,12 +1348,13 @@ function App(props) {
         };
         setMessages([initialGreetingMessage]);
 
-        const audioUrl = await generateTTSAudio(config.initialText);
+        //Only generate audio on demand.
+        //const audioUrl = await generateTTSAudio(config.initialText);
 
         // Only update the initial greeting with audioUrl if it's still the current message
         setMessages(prevMessages => {
             if (prevMessages.length === 1 && prevMessages[0].content === config.initialText) {
-                return [{ ...prevMessages[0], audioUrl: audioUrl }];
+                return [{ ...prevMessages[0] }];
             }
             return prevMessages;
         });
@@ -1544,61 +1527,6 @@ function App(props) {
     };
 
     // =============================================
-    // MESSAGE INPUT COMPONENT
-    // =============================================
-    const MessageInput = ({ message, setMessage, handleSendMessage }) => {
-        const handleInputChange = (event) => {
-            setMessage(event.target.value);
-        };
-
-        const handleKeyPress = (event) => {
-            if (event.key === "Enter") {
-                handleSendMessage();
-            }
-        };
-
-        return (
-            <Box sx={{ display: "flex", alignItems: "center", marginTop: 2, width: "100%" }}>
-                <TextField
-                    variant="outlined"
-                    fullWidth
-                    autoFocus
-                    label="Type your message"
-                    value={message}
-                    onChange={handleInputChange}
-                    onKeyPress={handleKeyPress}
-                    sx={{
-                        backgroundColor: 'background.paper',
-                        borderRadius: 2,
-                        '& .MuiOutlinedInput-root': {
-                            paddingRight: '8px',
-                            borderRadius: 2,
-                        },
-                    }}
-                />
-                <IconButton
-                    color="primary"
-                    onClick={() => handleSendMessage()}
-                    disabled={message.trim() === ""}
-                    sx={{
-                        marginLeft: '8px',
-                        backgroundColor: 'background.paper',
-                        boxShadow: 2,
-                        '&:hover': {
-                            transform: 'scale(1.05)',
-                            boxShadow: 4,
-                        },
-                    }}
-                >
-                    <SendIcon />
-                </IconButton>
-            </Box>
-        );
-    };
-
-
-
-    // =============================================
     // MESSAGE HANDLING FUNCTIONS
     // =============================================
 
@@ -1662,9 +1590,7 @@ function App(props) {
                 content: responseText,
                 text: responseText,
             }]);
-            if (chatMessagesRef.current && chatMessagesRef.current.scrollToBottom) {
-                chatMessagesRef.current.scrollToBottom();
-            }
+            
         } catch (error) {
             console.error('Error sending message:', error);
             if (error.message.includes('certificate') || error.message.includes('SSL')) {
@@ -1680,17 +1606,15 @@ function App(props) {
                     text: `Error: ${error.message || 'Unknown error'}`
                 }]);
             }
-            if (chatMessagesRef.current && chatMessagesRef.current.scrollToBottom) {
-                chatMessagesRef.current.scrollToBottom();
-            }
+            
         }
-    }, [message, audioFile, selectedChatbot, userToken, chatbotConfigs, generateNewUserToken, setMessages, setMessage, setAudioFile, setRecordedAudioUrl, setConversationLength, setLanguage, language, recordedAudioUrl, chatMessagesRef]);
+    }, [message, audioFile, selectedChatbot, userToken, chatbotConfigs, generateNewUserToken, setMessages, setMessage, setAudioFile, setRecordedAudioUrl, setConversationLength, setLanguage, language, recordedAudioUrl]);
 
 
     // =============================================
     // UPLOAD AUDIO FUNCTION
     // =============================================
-    //Config Change Starts Here
+    
     const uploadAudio = useCallback(async () => {
         if (!audioFile) {
             console.log("No audio file to upload");
@@ -2023,17 +1947,10 @@ function App(props) {
                             </ProtectedRoute>
                         } />
                         <Route path="/" element={
-                            <Container maxWidth="md" className="main-container" sx={{ px: { xs: 1, sm: 3 } }}> {/* Added responsive padding */}
-                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 4 }}>
-                                    <Typography variant="h4" component="h1" sx={{
-                                        textAlign: "center",
-                                        color: 'primary.main',
-                                        fontWeight: 600,
-                                        textShadow: currentTheme === 'dark' ? '0 2px 4px rgba(0,0,0,0.5)' : '0 2px 4px rgba(0,0,0,0.1)',
-                                    }}>
+                            <Container maxWidth="md" className="main-container" sx={{ px: { xs: 1, sm: 3 } }}>
+                                {/* Add TestTodd component here for testing */}
                                         Voice Chatbot
-                                    </Typography>
-                                </Box>
+
 
                                 {/* Language Selection */}
                                 <FormControl fullWidth className="language-select" sx={{ mb: 2 }}>
@@ -2113,7 +2030,6 @@ function App(props) {
 
                                 <Box className="chat-window-wrapper">
                                     <ChatMessages
-                                        ref={chatMessagesRef}
                                         messages={messages}
                                         playAudio={playAudio}
                                         generateTTSAudio={generateTTSAudio}
@@ -2123,11 +2039,36 @@ function App(props) {
                                 </Box>
 
                                 <Box className="message-input">
-                                    <MessageInput
-                                        message={message}
-                                        setMessage={setMessage}
-                                        handleSendMessage={handleSendMessage}
-                                    />
+                                    <Box sx={{ display: "flex", alignItems: "center", marginTop: 2, width: "100%" }}>
+                                        <TextField
+                                            variant="outlined"
+                                            fullWidth
+                                            label="Type your message"
+                                            value={message}
+                                            onChange={(event) => setMessage(event.target.value)}
+                                            onKeyDown={(event) => {
+                                                if (event.key === "Enter") {
+                                                    event.preventDefault();
+                                                    handleSendMessage();
+                                                }
+                                            }}
+                                            inputProps={{
+                                                autoComplete: 'off',
+                                                autoCorrect: 'off',
+                                                autoCapitalize: 'off',
+                                                spellCheck: 'false'
+                                            }}
+                                        />
+                                        <IconButton
+                                            onClick={() => {
+                                                handleSendMessage();
+                                            }}
+                                            disabled={!message.trim()}
+                                            sx={{ marginLeft: 1 }}
+                                        >
+                                            <SendIcon />
+                                        </IconButton>
+                                    </Box>
                                 </Box>
 
                                 <Box className="audio-controls">
