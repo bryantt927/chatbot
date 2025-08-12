@@ -89,7 +89,8 @@ def chatcompletion(user_input, user_name, user_prompt, user_token, language, cha
         temperature=1,
         presence_penalty=0,
         frequency_penalty=0,
-        max_tokens=2000,
+        reasoning_effort="minimal",
+        max_completion_tokens=2000,
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_input},
