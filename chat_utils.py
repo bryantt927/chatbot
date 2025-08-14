@@ -63,8 +63,8 @@ def chatcompletion(
             print(f"Error decoding COMPLEX_MODEL_LANGUAGES from .env: {e}")
 
     # --- Load ADVANCED_MODEL and BASE_MODEL ---
-    ADVANCED_MODEL = os.getenv("ADVANCED_MODEL", "gpt-4.1")
-    BASE_MODEL = os.getenv("BASE_MODEL", "gpt-4.1-mini")
+    ADVANCED_MODEL = os.getenv("ADVANCED_MODEL", "gpt-4o")
+    BASE_MODEL = os.getenv("BASE_MODEL", "gpt-4o-mini")
 
     # Determine model_name based on language
     if language in COMPLEX_MODEL_LANGUAGES:
