@@ -14,19 +14,19 @@ def get_conversation_pairs(chat_history, max_lines=None):
     """
     if max_lines is None:
         max_lines = Config.CUTOFF_LINE_INDEX
-    
+
     lines = chat_history.splitlines()
-    
+
     # Filter out empty lines and extract message lines
     message_lines = []
     for line in lines:
         line = line.strip()
         if line and (' User: ' in line or ' Assistant: ' in line):
             message_lines.append(line)
-    
+
     # Return the most recent max_lines (sliding window)
     recent_lines = message_lines[-max_lines:] if len(message_lines) > max_lines else message_lines
-    
+
     # Convert to format for sending to AI
     context_lines = []
     for line in recent_lines:
@@ -37,21 +37,25 @@ def get_conversation_pairs(chat_history, max_lines=None):
         elif ' Assistant: ' in line:
             assistant_msg = line.split(' Assistant: ', 1)[1]
             context_lines.append(f"Assistant: {assistant_msg}")
-    
+
     return "\n".join(context_lines)
 
-def chatcompletion(user_input, user_name, user_prompt, user_token, language, chat_history):
+
+def chatcompletion(
+    user_input, user_name, user_prompt, user_token, language, chat_history
+):
     """
     Generate chat completion with conversation context.
     Uses CUTOFF_LINE_INDEX from config to limit history.
+    Optimized for gpt-4.1 and gpt-4.1-mini.
     """
+
     # Get limited history using config value
     limited_history = get_conversation_pairs(chat_history)
-    
+
     # --- Load COMPLEX_MODEL_LANGUAGES ---
     complex_model_languages_json = os.getenv("COMPLEX_MODEL_LANGUAGES")
-    COMPLEX_MODEL_LANGUAGES = []  # Initialize as empty list
-
+    COMPLEX_MODEL_LANGUAGES = []
     if complex_model_languages_json:
         try:
             COMPLEX_MODEL_LANGUAGES = json.loads(complex_model_languages_json)
@@ -59,13 +63,8 @@ def chatcompletion(user_input, user_name, user_prompt, user_token, language, cha
             print(f"Error decoding COMPLEX_MODEL_LANGUAGES from .env: {e}")
 
     # --- Load ADVANCED_MODEL and BASE_MODEL ---
-    ADVANCED_MODEL = os.getenv(
-        "ADVANCED_MODEL", "gpt-4o_default"
-    )  # Provide a default if not found
-    BASE_MODEL = os.getenv(
-        "BASE_MODEL", "gpt-4o-mini_default"
-    )  # Provide a default if not found
-
+    ADVANCED_MODEL = os.getenv("ADVANCED_MODEL", "gpt-4.1")
+    BASE_MODEL = os.getenv("BASE_MODEL", "gpt-4.1-mini")
 
     # Determine model_name based on language
     if language in COMPLEX_MODEL_LANGUAGES:
@@ -74,29 +73,33 @@ def chatcompletion(user_input, user_name, user_prompt, user_token, language, cha
         model_name = BASE_MODEL
 
     print(f"Language is {language}, using model: {model_name}")
-    
+
     # Count lines for logging
     history_lines = limited_history.splitlines() if limited_history else []
     print(f"Context: {len(history_lines)} lines (max: {Config.CUTOFF_LINE_INDEX})")
 
     # Build the system prompt with conversation history
-    system_prompt = user_prompt
+    system_prompt = (
+        "Respond concisely, using no more than 2–3 sentences unless clarification is requested.\n\n"
+        + user_prompt
+    )
     if limited_history:
         system_prompt += f"\n\nPrevious conversation history:\n{limited_history}"
 
-    output = client.chat.completions.create(
+    # --- Responses API call ---
+    output = client.responses.create(
         model=model_name,
-        temperature=1,
-        presence_penalty=0,
-        frequency_penalty=0,
-        reasoning_effort="minimal",
-        max_completion_tokens=2000,
-        messages=[
+        max_output_tokens=2000,
+        input=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_input},
-        ]
+        ],
     )
-    return output.choices[0].message.content
+
+    # Get the text output
+    return output.output_text
+
+
 
 def chat(user_input, user_name, user_prompt, user_token, language):
     """
@@ -142,6 +145,7 @@ def chat(user_input, user_name, user_prompt, user_token, language):
         print(f"Error for file '{history_file}': {e}", file=sys.stderr)
 
     return response
+
 
 def get_response(userText, user_name, user_prompt, user_token, language):
     """
