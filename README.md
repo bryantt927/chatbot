@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project offers a comprehensive solution for transcribing audio messages and generating responses, leveraging OpenAI's Whisper and GPT-4 models. Integrated into a Flask backend with a React frontend, the application allows users to record audio messages via a web interface, transcribes these messages into text, and employs the GPT-4 model to craft responses to the transcribed text. This README contains all you need to know to get started, including setup instructions, usage tips, and how to contribute.
+This project was created by Dickinson students Anne Pham (annepham1512) and Hillary Zhong (Hill134Z). It offers a comprehensive solution for transcribing audio messages and generating responses, leveraging OpenAI's Whisper and GPT-4 models. Integrated into a Flask backend with a React frontend, the application allows users to record audio messages via a web interface, transcribes these messages into text, and employs the GPT-4 model to craft responses to the transcribed text. This README contains all you need to know to get started, including setup instructions, usage tips, and how to contribute.
 
 ## Installation
 
